@@ -32,8 +32,8 @@
 
 ### 6.1 등록 api
 
-CreatedHostrequest, CreatedHostresponse의 객체 생성하여 dto로 사용 하였으며 등록 api 호출시 service에 작된 validateDuplicateIp, validateDuplicateName, countHost method를 호출하고
-유효성을 체크합니다. try catch을 활용하여 ResponseEntity 객체의 상태 코드와 data를 return 할 수 있도록 구현 했습니다. 
+CreatedHostrequest, CreatedHostresponse의 객체 생성하여 dto로 사용 하였으며 등록 api 호출시 service에 작성된 validateDuplicateIp, validateDuplicateName, countHost method를 호출하고
+유효성을 체크합니다. try catch문을 활용하여 ResponseEntity 객체의 상태 코드와 data를 return 할 수 있도록 구현 했습니다. 
 
 1)
 <img width="711" alt="스크린샷 2022-10-24 오전 12 45 17" src="https://user-images.githubusercontent.com/103010985/197401817-64c90fb6-4d2e-499b-a7e7-37825584b63f.png">
@@ -76,7 +76,7 @@ CreatedHostrequest, CreatedHostresponse의 객체 생성하여 dto로 사용 하
 
 ### 6.2 조회 api
 
- Entity를 DTO로 변환해서 사용하였고 추가로 Result 클래스로 컬렉션을 감싸사 향후 필요한 필드를 추가 할 수 있도록 구현했습니다.
+ Entity를 DTO로 변환해서 사용하였고 추가로 Result 클래스로 컬렉션을 감싸 향후 필요한 필드를 추가 할 수 있도록 구현했습니다.
 
 ```java
 //조회 api
@@ -163,7 +163,7 @@ CreatedHostrequest, CreatedHostresponse의 객체 생성하여 dto로 사용 하
 ```
 
 ### 6.3 수정 api
-UpdateHostRequest, UpdateHostRespose 객체를 생성하여 DTO로 사용하였고 sevice 로직의 transaction이 일어날때 jpa의 영속성 컨텍스트 개념을 활용하여 host을 변경사항을 set 할 수 있도록 구현 하였습니다. 서비스에서 member를 반환하게되면 영속 상태에서 끊긴 상태에서 반환이 되고, 커멘드랑 쿼리를 철저하게 분리하기 위해 변경감지를 통한 commit이 되는 시점 이후 별도의 findOne 메소드를 호출하여 객체를 return 받을 수 있도록 구현 했습니다. return 받은 객체와 ResponseEntity 객체의 상태코드를 활용하여 상태코드와 data를 return 하였습니다. 
+UpdateHostRequest, UpdateHostRespose 객체를 생성하여 DTO로 사용하였고 sevice 로직의 transaction이 일어날때 jpa의 영속성 컨텍스트 개념을 활용하여 host의 변경사항을 set 할 수 있도록 구현 하였습니다. 서비스에서 member를 return하게되면 영속 상태가 끊긴 상태에서 return됨으로, 커멘드랑 쿼리를 철저하게 분리하기 위해 변경감지를 통한 commit이 되는 시점 이후 별도의 findOne 메소드를 호출하여 객체를 return 받을 수 있도록 구현 했습니다. return 받은 객체와 ResponseEntity 객체의 상태코드를 활용하여 상태코드와 data를 return 하였습니다. 
 
 1)
 <img width="742" alt="스크린샷 2022-10-24 오전 1 14 24" src="https://user-images.githubusercontent.com/103010985/197403311-c944c2a0-ffa3-4b0c-a9d7-e680892edf46.png">
